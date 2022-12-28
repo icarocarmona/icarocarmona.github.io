@@ -15,7 +15,7 @@ title: "Icaro Carmona de Almeida"
 description: "Olá 👋! Esse é meu espaço, onde pretendo escrever sobre Tecnologia, Dados, Arquitetura e IA."
 
 # The subpath of your site, e.g. /blog, for generating urls.
-baseurl: "https://icarocarmona.github.io"
+baseurl: ""
 
 # The base hostname & protocol of your site for where absolute urls are needed.
 url: "https://icarocarmona.github.io"
