@@ -6,19 +6,19 @@
 # 'jekyll serve'. If you change this file, please restart the server process.
 
 # Site language
-lang: en-US
+lang: pt-BR
 
 # Site title
-title: "Scriptor"
+title: "Icaro Carmona de Almeida"
 
 # A description of your site for meta tag, search engine results.
-description: "Scriptor is a minimal, clean, modern & responsive Jekyll theme for writers"
+description: "Olá 👋! Esse é meu espaço, onde pretendo escrever sobre Tecnologia, Dados, Arquitetura e IA."
 
 # The subpath of your site, e.g. /blog, for generating urls.
-baseurl: ""
+baseurl: "https://medium.com/@icarocarmona"
 
 # The base hostname & protocol of your site for where absolute urls are needed.
-url: "https://scriptor-jekyll.netlify.com"
+url: "https://icarocarmona.github.io"
 
 # Favicon
 favicon: images/favicon.png
@@ -30,14 +30,6 @@ google_analytics: ""
 navigation:
   - text: Home
     url: /
-  - text: About
-    url: /about/
-  - text: Style Guide
-    url: /style-guide/
-  - text: Tags
-    url: /tags/
-  - text: Download
-    url: https://github.com/JustGoodThemes/Scriptor-Jekyll-Theme
 
 # The shortname for your Disqus site to enable comments.
 disqus: justgoodthemes
