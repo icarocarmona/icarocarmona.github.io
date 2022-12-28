@@ -15,7 +15,7 @@ title: "Icaro Carmona de Almeida"
 description: "Olá 👋! Esse é meu espaço, onde pretendo escrever sobre Tecnologia, Dados, Arquitetura e IA."
 
 # The subpath of your site, e.g. /blog, for generating urls.
-baseurl: "https://medium.com/@icarocarmona"
+baseurl: "https://icarocarmona.github.io"
 
 # The base hostname & protocol of your site for where absolute urls are needed.
 url: "https://icarocarmona.github.io"
@@ -29,6 +29,14 @@ google_analytics: ""
 # Site navigation - each item must have a title and a url.
 navigation:
   - text: Home
+    url: /
+  - text: About
+    url: /about/
+  - text: Style Guide
+    url: /style-guide/
+  - text: Tags
+    url: /tags/
+  - text: Download
     url: /
 
 # The shortname for your Disqus site to enable comments.
