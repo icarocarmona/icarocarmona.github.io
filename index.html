@@ -1,51 +1,433 @@
----
-layout: default
----
+<!DOCTYPE html>
+<html lang="pt-BR">
 
-<main class="main-content fadeInDown delay_075s">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZC Analytics — Consultoria em IA e Soluções Inteligentes</title>
+    <!-- Configuração do Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configuração dos Ícones Lucide -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Configuração de Fonte e Cor de Fundo */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fb;
+            color: #222;
+        }
 
-  {% for post in paginator.posts %}
-  <article class="post">
-    <header class="post-header">
-      <time class="post-date" datetime="{{ post.date | date: "%Y-%m-%d" }}">{{post.date | date: "%B %-d, %Y" }}</time>
-      <h2 class="post-title"><a href="{{ site.baseurl }}{{ post.url }}" rel="bookmark">{{post.title}}</a></h2>
-      <div class="post-meta">
-        By <span class="post-author">{{ site.data.author.name }}</span>{% if post.tags.size > 0 %}<span
-          class="post-tags"> in
-          {% for tag in post.tags %}<a href="{{ site.baseurl }}/tags/#{{ tag | cgi_escape }}" rel="tag">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}{% endfor %}</span>{% endif %}
-      </div><!-- .post-meta -->
-      {% if post.feature_image and post.feature_image != "" %}
-      <figure class="post-thumbnail image-card width-wide">
-        <a href="{{site.baseurl}}{{post.url}}"><img src="{{ post.feature_image | relative_url }}"
-            alt="{{ post.title }}"></a>
-      </figure><!-- .post-thumbnail -->
-      {% endif %}
-    </header><!-- .post-header -->
-    <div class="post-content">
-      {% if post.content contains '<!--more-->' %}
-      {{ post.content | split:'<!--more-->' | first }}
-      <p class="read-more"><a href="{{ site.baseurl }}{{ post.url }}" class="read-more-link">Continue reading &rarr;</a>
-      </p>
-      {% else %}
-      {{ post.content }}
-      {% endif %}
-    </div><!-- .post-content -->
-  </article><!-- .post -->
-  {% endfor %}
+        /* Cor primária customizada (Indigo corporativo) */
+        .text-primary {
+            color: #4f46e5;
+        }
 
-  {% if paginator.total_pages > 1 %}
-  <nav class="pagination">
-    <h2 class="screen-reader-text">Posts navigation</h2>
-    <div class="nav-links">
-      {% if paginator.previous_page %}
-      <a href="{{ paginator.previous_page_path | relative_url }}" class="newer-posts">&larr; Newer Posts</a>
-      {% endif %}
-      <span class="page-number">Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
-      {% if paginator.next_page %}
-      <a href="{{ paginator.next_page_path | relative_url }}" class="older-posts">Older Posts &rarr;</a>
-      {% endif %}
-    </div>
-  </nav><!-- .pagination -->
-  {% endif %}
+        .bg-primary {
+            background-color: #4f46e5;
+        }
 
-</main><!-- .site-main -->
+        .hover\:bg-primary-dark:hover {
+            background-color: #4338ca;
+        }
+
+        .focus\:ring-primary {
+            --tw-ring-color: #4f46e5;
+        }
+
+        /* Estilo para animação de subida dos cards */
+        .card-animate {
+            transition: all 0.3s ease-in-out;
+        }
+
+        .card-animate:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.1), 0 4px 6px -2px rgba(79, 70, 229, 0.05);
+        }
+
+        /* Esconde a barra de rolagem no textarea quando o conteúdo cabe */
+        #challenge-input {
+            resize: none;
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <!-- 1. Header (Fixo e Profissional) -->
+    <header class="bg-white shadow-md sticky top-0 z-20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+            <h1 class="text-2xl font-bold">
+                ZC <span class="text-indigo-600">Analytics</span>
+            </h1>
+            <nav class="space-x-6 hidden md:flex">
+                <a href="#servicos"
+                    class="text-gray-600 hover:text-indigo-600 font-medium transition duration-200">Serviços</a>
+                <a href="#abordagem"
+                    class="text-gray-600 hover:text-indigo-600 font-medium transition duration-200">Abordagem</a>
+                <a href="#insights"
+                    class="text-gray-600 hover:text-indigo-600 font-medium transition duration-200">Insights IA</a>
+                <a href="#contato"
+                    class="text-gray-600 hover:text-indigo-600 font-medium transition duration-200">Contato</a>
+            </nav>
+            <a href="#contato"
+                class="md:hidden bg-indigo-600 text-white px-3 py-1.5 rounded-lg text-sm font-semibold hover:bg-indigo-700 transition duration-200">Fale
+                Conosco</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- 2. Hero (Destaque e Credibilidade) -->
+        <section class="relative pt-20 pb-28 text-center bg-gray-50 border-b border-gray-100">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <p class="text-indigo-600 font-semibold mb-3 tracking-wide uppercase text-sm">Inteligência Artificial &
+                    Estratégia</p>
+                <h2 class="text-5xl md:text-6xl font-extrabold text-gray-900 leading-tight mb-6">
+                    Seu Parceiro em <span class="text-indigo-600">IA e Soluções Inteligentes</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-10">
+                    Transformamos dados em decisões estratégicas. Desenvolvemos agentes, automações e soluções sob
+                    medida com IA Generativa para impulsionar a eficiência do seu negócio.
+                </p>
+                <a href="#contato"
+                    class="bg-indigo-600 text-white text-lg font-bold px-8 py-3 rounded-xl shadow-lg hover:bg-indigo-700 transition duration-300 transform hover:scale-105 inline-flex items-center space-x-2">
+                    <span>Inicie sua Transformação</span>
+                    <i data-lucide="arrow-right"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- 3. Serviços (Com Ícones e Destaque) -->
+        <section id="servicos" class="py-20 bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h3 class="text-3xl font-bold text-gray-900 mb-4">Nossos Serviços Especializados</h3>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-12">Focamos em entregar valor real através da fusão
+                    de engenharia de dados e inteligência artificial de ponta.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                    <!-- Card 1: Consultoria em Dados e IA -->
+                    <div class="card-animate bg-white p-8 rounded-xl border border-gray-200 shadow-lg text-left">
+                        <div
+                            class="p-3 w-12 h-12 rounded-full bg-indigo-100 text-indigo-600 mb-4 flex items-center justify-center">
+                            <i data-lucide="brain-circuit" class="w-6 h-6"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-900 mb-3">Consultoria em Dados e IA</h4>
+                        <p class="text-gray-600">Arquitetura robusta, pipelines otimizados e estratégias de governança
+                            para potencializar a tomada de decisão com dados e IA no seu negócio.</p>
+                    </div>
+
+                    <!-- Card 2: Criação de Agentes Inteligentes -->
+                    <div class="card-animate bg-white p-8 rounded-xl border border-gray-200 shadow-lg text-left">
+                        <div
+                            class="p-3 w-12 h-12 rounded-full bg-indigo-100 text-indigo-600 mb-4 flex items-center justify-center">
+                            <i data-lucide="bot" class="w-6 h-6"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-900 mb-3">Criação de Agentes Inteligentes</h4>
+                        <p class="text-gray-600">Desenvolvimento de agentes autônomos, assistentes virtuais e *bots*
+                            personalizados, utilizando as últimas tecnologias de GenAI para automatizar interações
+                            complexas.</p>
+                    </div>
+
+                    <!-- Card 3: Soluções Customizadas -->
+                    <div class="card-animate bg-white p-8 rounded-xl border border-gray-200 shadow-lg text-left">
+                        <div
+                            class="p-3 w-12 h-12 rounded-full bg-indigo-100 text-indigo-600 mb-4 flex items-center justify-center">
+                            <i data-lucide="rocket" class="w-6 h-6"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-900 mb-3">Soluções Customizadas</h4>
+                        <p class="text-gray-600">Construção de aplicações e integrações de software que automatizam
+                            processos de negócio críticos, resultando em maior eficiência operacional e redução de
+                            custos.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Nossa Abordagem/Diferenciais (Prova de Valor) -->
+        <section id="abordagem" class="py-20 bg-gray-50">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div class="md:order-2">
+                        <h3 class="text-3xl font-bold text-gray-900 mb-4">Nossa Abordagem</h3>
+                        <p class="text-lg text-gray-600 mb-6">
+                            A <strong class="text-indigo-600">ZC Analytics</strong> nasceu com o propósito de unir a
+                            expertise em <strong>engenharia de dados</strong> e a <strong>inteligência
+                                artificial</strong> para criar soluções que são, acima de tudo, <strong>escaláveis e de
+                                valor real</strong>.
+                        </p>
+                        <ul class="space-y-4 text-gray-700">
+                            <li class="flex items-start space-x-3">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-indigo-500 flex-shrink-0 mt-1"></i>
+                                <span>Foco em Geração de Valor Estratégico.</span>
+                            </li>
+                            <li class="flex items-start space-x-3">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-indigo-500 flex-shrink-0 mt-1"></i>
+                                <span>Soluções Baseadas em Dados (Data-Driven).</span>
+                            </li>
+                            <li class="flex items-start space-x-3">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-indigo-500 flex-shrink-0 mt-1"></i>
+                                <span>Metodologia Ágil e Transparente.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Imagem Placeholder Profissional -->
+                    <div class="md:order-1 hidden md:block">
+                        <img src="https://placehold.co/600x400/e0e7ff/4f46e5?text=Vis%C3%A3o+Estrat%C3%A9gica+IA"
+                            alt="Imagem de fundo de um painel de dados com visualização de IA"
+                            class="rounded-xl shadow-2xl w-full h-auto object-cover">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. ✨ IA Insights Instantâneos (Recurso Gemini API) -->
+        <!-- <section id="insights" class="py-20 bg-white border-t border-gray-100">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h3 class="text-3xl font-bold text-gray-900 mb-4 inline-flex items-center space-x-2">
+                    <i data-lucide="sparkles" class="w-7 h-7 text-indigo-500"></i>
+                    <span>IA Insights Instantâneos</span>
+                </h3>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-8">
+                    Descreva um desafio de negócios e receba uma sugestão imediata de aplicação de IA e dados, com
+                    informações baseadas em pesquisa na web (Google Search Grounding).
+                </p>
+
+                <div class="space-y-4">
+                    <textarea id="challenge-input"
+                        class="w-full p-4 border border-gray-300 rounded-xl focus:ring-indigo-500 focus:border-indigo-500 transition duration-150 shadow-sm"
+                        rows="3"
+                        placeholder="Ex: Qual é a melhor abordagem de IA para otimizar minha cadeia de suprimentos em 2024?"></textarea>
+
+                    <button id="generate-insight-btn"
+                        class="w-full bg-indigo-600 text-white text-lg font-bold px-8 py-3 rounded-xl shadow-lg hover:bg-indigo-700 transition duration-300 transform hover:scale-105 inline-flex items-center justify-center space-x-2 disabled:opacity-50"
+                        disabled>
+                        <span>Gerar Insight Estratégico ✨</span>
+                    </button>
+
+                    <div id="loading-indicator" class="hidden text-indigo-600 font-semibold mt-4">
+                        <i data-lucide="loader-circle" class="w-5 h-5 animate-spin inline-block mr-2"></i>
+                        Analisando o desafio...
+                    </div>
+                </div>
+
+                <div id="insight-result-container"
+                    class="mt-8 p-6 bg-indigo-50 border border-indigo-200 rounded-xl shadow-md text-left hidden">
+                    <h4 class="text-xl font-bold text-indigo-800 mb-3 flex items-center space-x-2">
+                        <i data-lucide="lightbulb" class="w-6 h-6"></i>
+                        <span>Insight da ZC Analytics:</span>
+                    </h4>
+                    <p id="insight-text" class="text-gray-700 mb-4"></p>
+                    <div id="source-list" class="text-xs text-gray-500 border-t pt-2 mt-4 hidden">
+                        <p class="font-semibold mb-1">Fontes:</p>
+                    </div>
+                </div>
+            </div>
+        </section> -->
+
+
+        <!-- 6. Contato (Chamada Final Otimizada) -->
+        <section id="contato" class="py-20 bg-gray-50">
+            <div
+                class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center bg-indigo-100 p-10 rounded-xl border border-indigo-300 shadow-xl">
+                <h3 class="text-3xl font-bold text-gray-900 mb-4">Pronto para Inovar com IA?</h3>
+                <p class="text-lg text-gray-700 mb-8">
+                    Entre em contato hoje para uma avaliação gratuita e descubra como a Inteligência Artificial pode
+                    gerar resultados imediatos para a sua empresa.
+                </p>
+                <!-- O botão agora está com um texto mais claro e profissional -->
+                <a href="https://forms.gle/ohhMiPvYbQCcjwA36" target="_blank"
+                    class="bg-indigo-600 text-white text-xl font-bold px-10 py-4 rounded-xl shadow-xl hover:bg-indigo-700 transition duration-300 transform hover:scale-105 inline-flex items-center space-x-2">
+                    <span>Agendar Conversa Estratégica</span>
+                    <i data-lucide="mail" class="w-5 h-5"></i>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-6 border-t border-gray-200 bg-white">
+        <p class="text-sm text-gray-500">
+            © 2025 ZC Analytics — Inteligência com Propósito
+        </p>
+        <p class="text-xs text-gray-400 mt-1">
+            <a href="#" class="hover:text-indigo-600 transition">Política de Privacidade</a> |
+            <a href="#" class="hover:text-indigo-600 transition">Termos de Uso</a>
+        </p>
+    </footer>
+
+    <script>
+        // Inicialização de variáveis globais do Canvas
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+
+        const MODEL_NAME = 'gemini-2.5-flash-preview-05-20';
+        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL_NAME}:generateContent?key=`;
+        const API_KEY = ""; // Será preenchida pelo Canvas em tempo de execução
+
+        // --- 1. Utility Functions ---
+
+        /**
+         * Realiza uma chamada de fetch com retentativas e backoff exponencial.
+         * @param {string} url - A URL para a chamada.
+         * @param {object} options - Opções de fetch (method, headers, body).
+         * @param {number} maxRetries - Número máximo de retentativas.
+         * @returns {Promise<Response>} - A resposta do fetch.
+         */
+        async function exponentialBackoffFetch(url, options, maxRetries = 5) {
+            for (let i = 0; i < maxRetries; i++) {
+                try {
+                    const response = await fetch(url + API_KEY, options);
+                    if (response.ok) {
+                        return response;
+                    }
+                    if (response.status === 429 || response.status >= 500) {
+                        // Erros de rate limit ou servidor: tentar novamente
+                        console.warn(`Tentativa ${i + 1} falhou com status ${response.status}. Retentando...`);
+                        const delay = Math.pow(2, i) * 1000 + Math.random() * 1000;
+                        await new Promise(resolve => setTimeout(resolve, delay));
+                        continue;
+                    }
+                    // Outros erros não relacionados a retentativa (e.g., 400 Bad Request)
+                    return response;
+                } catch (error) {
+                    console.error("Erro de rede/fetch:", error);
+                    if (i === maxRetries - 1) throw error;
+                    const delay = Math.pow(2, i) * 1000 + Math.random() * 1000;
+                    await new Promise(resolve => setTimeout(resolve, delay));
+                }
+            }
+            throw new Error("Falha na chamada da API após várias retentativas.");
+        }
+
+        // --- 2. Gemini API Logic ---
+
+        /**
+         * Gera um insight estratégico usando o modelo Gemini com pesquisa na web.
+         * @param {string} challenge - O desafio de negócios fornecido pelo usuário.
+         */
+        async function generateInsight(challenge) {
+            const systemPrompt = "Você é um consultor de IA e Estratégia da ZC Analytics. Forneça uma sugestão concisa (máximo 3 frases) e acionável sobre o desafio de negócios fornecido, focado em como a inteligência artificial ou análise de dados pode resolvê-lo. Use um tom profissional e direto.";
+
+            const payload = {
+                contents: [{ parts: [{ text: challenge }] }],
+                tools: [{ "google_search": {} }],
+                systemInstruction: {
+                    parts: [{ text: systemPrompt }]
+                },
+            };
+
+            const options = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            };
+
+            try {
+                const response = await exponentialBackoffFetch(API_URL, options);
+                const result = await response.json();
+                const candidate = result.candidates?.[0];
+
+                if (candidate && candidate.content?.parts?.[0]?.text) {
+                    const text = candidate.content.parts[0].text;
+                    let sources = [];
+                    const groundingMetadata = candidate.groundingMetadata;
+
+                    if (groundingMetadata && groundingMetadata.groundingAttributions) {
+                        sources = groundingMetadata.groundingAttributions
+                            .map(attribution => ({
+                                uri: attribution.web?.uri,
+                                title: attribution.web?.title,
+                            }))
+                            .filter(source => source.uri && source.title);
+                    }
+
+                    return { text, sources };
+
+                } else {
+                    console.error("Estrutura de resposta inesperada ou conteúdo de IA ausente:", result);
+                    return { text: "Desculpe, não foi possível gerar o insight. Por favor, tente reformular seu desafio.", sources: [] };
+                }
+
+            } catch (error) {
+                console.error("Erro ao chamar a API Gemini:", error);
+                return { text: "Ocorreu um erro de comunicação com o serviço de IA. Por favor, verifique sua conexão ou tente novamente mais tarde.", sources: [] };
+            }
+        }
+
+        // --- 3. DOM Manipulation and Event Listeners ---
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Inicializa ícones Lucide
+            lucide.createIcons();
+
+            const challengeInput = document.getElementById('challenge-input');
+            const generateBtn = document.getElementById('generate-insight-btn');
+            const loadingIndicator = document.getElementById('loading-indicator');
+            const resultContainer = document.getElementById('insight-result-container');
+            const insightText = document.getElementById('insight-text');
+            const sourceList = document.getElementById('source-list');
+
+            if (!challengeInput || !generateBtn) return; // Failsafe
+
+            // Habilita/Desabilita botão de geração baseado no input
+            challengeInput.addEventListener('input', () => {
+                generateBtn.disabled = challengeInput.value.trim().length < 10;
+            });
+
+            generateBtn.addEventListener('click', async () => {
+                const challenge = challengeInput.value.trim();
+                if (challenge.length < 10) return;
+
+                // 1. Mostrar estado de carregamento
+                generateBtn.disabled = true;
+                loadingIndicator.classList.remove('hidden');
+                resultContainer.classList.add('hidden');
+                insightText.textContent = '';
+                sourceList.classList.add('hidden');
+                sourceList.innerHTML = '<p class="font-semibold mb-1">Fontes:</p>'; // Limpa fontes antigas
+
+                try {
+                    // 2. Chamar a API Gemini
+                    const { text, sources } = await generateInsight(challenge);
+
+                    // 3. Exibir resultado
+                    insightText.textContent = text;
+                    resultContainer.classList.remove('hidden');
+
+                    if (sources.length > 0) {
+                        sourceList.classList.remove('hidden');
+                        sources.slice(0, 3).forEach((source, index) => {
+                            const link = document.createElement('a');
+                            link.href = source.uri;
+                            link.target = "_blank";
+                            link.className = "text-indigo-600 hover:text-indigo-800 underline block truncate";
+                            link.textContent = `${index + 1}. ${source.title}`;
+                            sourceList.appendChild(link);
+                        });
+                        if (sources.length > 3) {
+                            const more = document.createElement('p');
+                            more.textContent = `...e mais ${sources.length - 3} fontes de pesquisa.`;
+                            more.className = "mt-1 italic text-gray-400";
+                            sourceList.appendChild(more);
+                        }
+                    }
+
+                } catch (error) {
+                    insightText.textContent = "Um erro inesperado ocorreu ao processar a requisição.";
+                    resultContainer.classList.remove('hidden');
+                    console.error("Erro geral no clique do botão:", error);
+                } finally {
+                    // 4. Finalizar estado de carregamento
+                    loadingIndicator.classList.add('hidden');
+                    generateBtn.disabled = false;
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
