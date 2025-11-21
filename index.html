@@ -98,6 +98,23 @@
 
         /* Utilitário para esconder a barra de rolagem horizontal em telas pequenas se necessário */
         body { overflow-x: hidden; }
+
+        /* --- SCROLL REVEAL ANIMATION --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Atrasos escalonados para elementos em grupo (ex: cards) */
+        .delay-100 { transition-delay: 0.1s; }
+        .delay-200 { transition-delay: 0.2s; }
+        .delay-300 { transition-delay: 0.3s; }
     </style>
 </head>
 
@@ -117,11 +134,6 @@
             <nav class="space-x-8 hidden md:flex items-center font-medium">
                 <a href="#servicos" class="text-gray-600 hover:text-indigo-600 transition relative after:absolute after:bg-indigo-600 after:h-0.5 after:w-0 after:left-0 after:-bottom-1 after:transition-all hover:after:w-full">Serviços</a>
                 <a href="#abordagem" class="text-gray-600 hover:text-indigo-600 transition relative after:absolute after:bg-indigo-600 after:h-0.5 after:w-0 after:left-0 after:-bottom-1 after:transition-all hover:after:w-full">Abordagem</a>
-                <!-- Link "IA Insights" removido temporariamente -->
-                <!-- <a href="#insights" class="text-gray-600 hover:text-indigo-600 transition relative after:absolute after:bg-indigo-600 after:h-0.5 after:w-0 after:left-0 after:-bottom-1 after:transition-all hover:after:w-full flex items-center space-x-1">
-                    <span>IA Insights</span>
-                    <i data-lucide="sparkles" class="w-4 h-4 text-indigo-500"></i>
-                </a> -->
             </nav>
             <a href="#contato" class="hidden md:inline-flex bg-indigo-600 text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-indigo-700 transition shadow-md hover:shadow-indigo-500/30 items-center space-x-2">
                 <span>Fale Conosco</span>
@@ -147,7 +159,7 @@
             </div>
 
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-                <div class="inline-flex items-center space-x-2 bg-indigo-50 border border-indigo-100 rounded-full px-4 py-1.5 mb-6 shadow-sm">
+                <div class="reveal inline-flex items-center space-x-2 bg-indigo-50 border border-indigo-100 rounded-full px-4 py-1.5 mb-6 shadow-sm">
                     <span class="relative flex h-2.5 w-2.5">
                         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
                         <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-indigo-600"></span>
@@ -155,17 +167,17 @@
                     <p class="text-indigo-700 font-semibold text-sm uppercase tracking-wide">O Futuro da Estratégia é Agora</p>
                 </div>
                 
-                <h2 class="text-5xl md:text-7xl font-extrabold text-gray-900 leading-tight mb-6 tracking-tight">
+                <h2 class="reveal delay-100 text-5xl md:text-7xl font-extrabold text-gray-900 leading-tight mb-6 tracking-tight">
                     Seu Parceiro em <br class="hidden md:block">
                     <!-- Aplicação do Texto com Gradiente Animado -->
                     <span class="text-gradient-futuristic">IA e Soluções Inteligentes</span>
                 </h2>
                 
-                <p class="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed">
+                <p class="reveal delay-200 text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed">
                     Transformamos dados brutos em vantagem competitiva. Desenvolvemos agentes autônomos e ecossistemas de IA Generativa que redefinem a eficiência do seu negócio.
                 </p>
                 
-                <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
+                <div class="reveal delay-300 flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
                     <!-- Link redirecionado para 'servicos' já que insights está desativado -->
                     <a href="#servicos" class="btn-glow w-full sm:w-auto bg-indigo-600 text-white text-lg font-bold px-8 py-4 rounded-xl shadow-xl hover:bg-indigo-700 transition duration-300 transform hover:-translate-y-1 inline-flex items-center justify-center space-x-2">
                         <span>Conhecer Serviços</span>
@@ -189,12 +201,12 @@
         <!-- 3. Serviços (Cards Melhorados) -->
         <section id="servicos" class="py-24 bg-white relative z-10">
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h3 class="text-4xl font-extrabold text-gray-900 mb-4">Nossos Serviços Especializados</h3>
-                <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-16">Fusão de engenharia robusta e IA de ponta para entregar valor real e mensurável.</p>
+                <h3 class="reveal text-4xl font-extrabold text-gray-900 mb-4">Nossos Serviços Especializados</h3>
+                <p class="reveal delay-100 text-lg text-gray-600 max-w-3xl mx-auto mb-16">Fusão de engenharia robusta e IA de ponta para entregar valor real e mensurável.</p>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <!-- Card 1 -->
-                    <div class="card-hover-effect bg-white p-8 rounded-2xl border border-gray-100 shadow-lg text-left relative overflow-hidden group">
+                    <div class="reveal delay-100 card-hover-effect bg-white p-8 rounded-2xl border border-gray-100 shadow-lg text-left relative overflow-hidden group">
                         <div class="absolute inset-0 bg-gradient-to-br from-indigo-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
                         <div class="relative z-10">
                             <div class="p-3 w-14 h-14 rounded-xl bg-indigo-600 text-white shadow-indigo-200 shadow-md mb-6 flex items-center justify-center">
@@ -206,7 +218,7 @@
                     </div>
 
                     <!-- Card 2 -->
-                    <div class="card-hover-effect bg-white p-8 rounded-2xl border border-gray-100 shadow-lg text-left relative overflow-hidden group">
+                    <div class="reveal delay-200 card-hover-effect bg-white p-8 rounded-2xl border border-gray-100 shadow-lg text-left relative overflow-hidden group">
                         <div class="absolute inset-0 bg-gradient-to-br from-fuchsia-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
                          <div class="relative z-10">
                             <div class="p-3 w-14 h-14 rounded-xl bg-fuchsia-600 text-white shadow-fuchsia-200 shadow-md mb-6 flex items-center justify-center">
@@ -218,7 +230,7 @@
                     </div>
 
                     <!-- Card 3 -->
-                    <div class="card-hover-effect bg-white p-8 rounded-2xl border border-gray-100 shadow-lg text-left relative overflow-hidden group">
+                    <div class="reveal delay-300 card-hover-effect bg-white p-8 rounded-2xl border border-gray-100 shadow-lg text-left relative overflow-hidden group">
                         <div class="absolute inset-0 bg-gradient-to-br from-indigo-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
                          <div class="relative z-10">
                             <div class="p-3 w-14 h-14 rounded-xl bg-indigo-900 text-white shadow-indigo-200 shadow-md mb-6 flex items-center justify-center">
@@ -238,28 +250,28 @@
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                     <div class="lg:order-2">
-                        <div class="inline-flex items-center space-x-2 bg-white border border-indigo-100 rounded-full px-4 py-1.5 mb-6 shadow-sm">
+                        <div class="reveal inline-flex items-center space-x-2 bg-white border border-indigo-100 rounded-full px-4 py-1.5 mb-6 shadow-sm">
                             <i data-lucide="target" class="w-4 h-4 text-indigo-600"></i>
                             <p class="text-indigo-700 font-semibold text-sm uppercase tracking-wide">Nosso DNA</p>
                         </div>
-                        <h3 class="text-4xl font-extrabold text-gray-900 mb-6">Engenharia + Inteligência</h3>
-                        <p class="text-lg text-gray-700 mb-8 leading-relaxed">
+                        <h3 class="reveal delay-100 text-4xl font-extrabold text-gray-900 mb-6">Engenharia + Inteligência</h3>
+                        <p class="reveal delay-200 text-lg text-gray-700 mb-8 leading-relaxed">
                             A <strong class="text-indigo-700">ZC Analytics</strong> não entrega apenas modelos; entregamos resultados. Unimos a robustez da engenharia de dados com a inovação da IA para criar soluções <strong>escaláveis e de alto impacto</strong>.
                         </p>
                         <ul class="space-y-5 text-gray-700 font-medium">
-                            <li class="flex items-start space-x-4 p-4 rounded-xl bg-white shadow-sm border border-gray-100 hover:border-indigo-200 transition">
+                            <li class="reveal delay-300 flex items-start space-x-4 p-4 rounded-xl bg-white shadow-sm border border-gray-100 hover:border-indigo-200 transition">
                                 <div class="flex-shrink-0 mt-1 bg-indigo-100 p-1 rounded-full">
                                      <i data-lucide="check" class="w-5 h-5 text-indigo-600"></i>
                                 </div>
                                 <span>Foco obsessivo em Geração de Valor Estratégico.</span>
                             </li>
-                             <li class="flex items-start space-x-4 p-4 rounded-xl bg-white shadow-sm border border-gray-100 hover:border-indigo-200 transition">
+                             <li class="reveal delay-300 flex items-start space-x-4 p-4 rounded-xl bg-white shadow-sm border border-gray-100 hover:border-indigo-200 transition">
                                 <div class="flex-shrink-0 mt-1 bg-indigo-100 p-1 rounded-full">
                                      <i data-lucide="check" class="w-5 h-5 text-indigo-600"></i>
                                 </div>
                                 <span>Soluções 100% Baseadas em Dados (Data-Driven).</span>
                             </li>
-                             <li class="flex items-start space-x-4 p-4 rounded-xl bg-white shadow-sm border border-gray-100 hover:border-indigo-200 transition">
+                             <li class="reveal delay-300 flex items-start space-x-4 p-4 rounded-xl bg-white shadow-sm border border-gray-100 hover:border-indigo-200 transition">
                                 <div class="flex-shrink-0 mt-1 bg-indigo-100 p-1 rounded-full">
                                      <i data-lucide="check" class="w-5 h-5 text-indigo-600"></i>
                                 </div>
@@ -267,8 +279,9 @@
                             </li>
                         </ul>
                     </div>
+                    
                     <!-- Imagem Placeholder com efeito de borda -->
-                    <div class="lg:order-1 hidden lg:block relative group perspective-1000">
+                    <div class="reveal delay-200 lg:order-1 hidden lg:block relative group perspective-1000">
                         <!-- Glow Effect Behind -->
                         <div class="absolute -inset-4 bg-gradient-to-r from-indigo-500 to-fuchsia-500 rounded-3xl opacity-20 blur-lg group-hover:opacity-40 transition duration-500 animate-pulse"></div>
                         
@@ -345,80 +358,11 @@
             </div>
         </section>
 
-        <!-- 5. ✨ IA Insights Instantâneos (Desabilitado Temporariamente) -->
-        <!--
-        <section id="insights" class="py-24 bg-indigo-900 relative overflow-hidden text-white">
-            <div class="absolute inset-0">
-                 <div class="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%239C92AC\' fill-opacity=\'0.12\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
-                 <div class="absolute -top-[30%] -right-[10%] w-[70%] h-[70%] rounded-full bg-indigo-600 filter blur-[120px] opacity-30 animate-blob"></div>
-                 <div class="absolute -bottom-[30%] -left-[10%] w-[70%] h-[70%] rounded-full bg-fuchsia-700 filter blur-[120px] opacity-30 animate-blob animation-delay-4000"></div>
-            </div>
-
-            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-                <div class="inline-flex items-center space-x-2 bg-indigo-800/50 border border-indigo-700 rounded-full px-4 py-1.5 mb-6 shadow-sm backdrop-blur-sm">
-                    <i data-lucide="stars" class="w-5 h-5 text-indigo-300"></i>
-                    <p class="text-indigo-100 font-medium text-sm uppercase tracking-wide">Demonstração Interativa</p>
-                </div>
-
-                <h3 class="text-4xl font-extrabold mb-6 flex justify-center items-center space-x-3">
-                    <span class="text-gradient-futuristic">IA Insights Instantâneos</span>
-                </h3>
-                <p class="text-xl text-indigo-100 max-w-3xl mx-auto mb-10 leading-relaxed">
-                    Experimente o poder da IA da ZC Analytics. Descreva um desafio de negócios e receba uma estratégia inicial baseada em dados em segundos.
-                </p>
-
-                <div class="space-y-6 bg-white/10 p-8 rounded-3xl backdrop-blur-md border border-white/20 shadow-2xl">
-                    <div class="relative">
-                        <i data-lucide="message-square-dashed" class="absolute left-4 top-4 w-6 h-6 text-indigo-300"></i>
-                        <textarea id="challenge-input"
-                            class="w-full p-4 pl-12 bg-indigo-950/50 border border-indigo-700 rounded-2xl text-white placeholder-indigo-300 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition shadow-inner"
-                            rows="3"
-                            placeholder="Ex: Como usar IA para prever a rotatividade de clientes no meu e-commerce?"></textarea>
-                    </div>
-
-                    <button id="generate-insight-btn"
-                        class="btn-glow w-full bg-indigo-600 text-white text-lg font-bold px-8 py-4 rounded-2xl shadow-lg hover:bg-indigo-700 transition duration-300 transform hover:scale-[1.02] active:scale-[0.98] inline-flex items-center justify-center space-x-3 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100">
-                        <i data-lucide="wand2" class="w-6 h-6"></i>
-                        <span>Gerar Estratégia com IA</span>
-                    </button>
-
-                    <div id="loading-indicator" class="hidden flex flex-col items-center justify-center mt-6 text-indigo-200 space-y-3">
-                         <div class="relative w-16 h-16">
-                            <div class="absolute top-0 left-0 w-full h-full border-4 border-indigo-500/30 rounded-full"></div>
-                            <div class="absolute top-0 left-0 w-full h-full border-4 border-t-indigo-400 rounded-full animate-spin"></div>
-                         </div>
-                        <span class="font-medium animate-pulse">Processando dados e gerando insights...</span>
-                    </div>
-                </div>
-
-                <div id="insight-result-container"
-                    class="mt-10 p-8 bg-gradient-to-br from-indigo-800/80 to-indigo-900/80 backdrop-blur-xl border border-indigo-600/50 rounded-3xl shadow-2xl text-left hidden ring-1 ring-indigo-400/30 relative overflow-hidden">
-                    <div class="absolute top-0 -left-[100%] w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent animate-[shimmer_2s_infinite]"></div>
-
-                    <h4 class="text-2xl font-bold text-white mb-6 flex items-center space-x-3">
-                        <div class="bg-indigo-600 p-2 rounded-lg shadow-inner">
-                             <i data-lucide="lightbulb" class="w-6 h-6 text-indigo-100"></i>
-                        </div>
-                        <span>Análise da ZC Analytics:</span>
-                    </h4>
-                    <p id="insight-text" class="text-lg text-indigo-50 leading-relaxed mb-6"></p>
-                    <div id="source-list" class="text-sm text-indigo-300 border-t border-indigo-700/50 pt-4 mt-6 hidden">
-                        <p class="font-semibold mb-3 uppercase tracking-wider text-xs flex items-center space-x-2">
-                            <i data-lucide="search" class="w-4 h-4"></i>
-                            <span>Fontes de Pesquisa:</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        -->
-
-
         <!-- 6. Contato (Chamada Final Otimizada) -->
         <section id="contato" class="py-24 relative overflow-hidden bg-white">
              <div class="absolute inset-0 bg-tech-pattern opacity-50"></div>
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-                <div class="bg-gradient-to-br from-indigo-600 to-indigo-800 p-12 rounded-3xl shadow-2xl text-white relative overflow-hidden">
+                <div class="reveal bg-gradient-to-br from-indigo-600 to-indigo-800 p-12 rounded-3xl shadow-2xl text-white relative overflow-hidden">
                      <!-- Círculos decorativos -->
                     <div class="absolute top-0 right-0 -mt-20 -mr-20 w-64 h-64 bg-white opacity-10 rounded-full filter blur-2xl"></div>
                     <div class="absolute bottom-0 left-0 -mb-20 -ml-20 w-64 h-64 bg-fuchsia-500 opacity-20 rounded-full filter blur-2xl"></div>
@@ -562,6 +506,31 @@
             const resultContainer = document.getElementById('insight-result-container');
             const insightText = document.getElementById('insight-text');
             const sourceList = document.getElementById('source-list');
+
+            // --- Scroll Reveal Logic ---
+            // 1. Seleciona todos os elementos com a classe .reveal
+            const revealElements = document.querySelectorAll('.reveal');
+
+            // 2. Configura o Observador (Observer)
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    // Se o elemento está visível na tela
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        // Opcional: Parar de observar após revelar (para animar apenas uma vez)
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                root: null, // Viewport
+                threshold: 0.15, // Dispara quando 15% do elemento está visível
+                rootMargin: "0px 0px -50px 0px" // Margem para disparar um pouco antes
+            });
+
+            // 3. Começa a observar cada elemento
+            revealElements.forEach(el => revealObserver.observe(el));
+            // --- End Scroll Reveal Logic ---
+
 
             if (!challengeInput || !generateBtn) return;
 
